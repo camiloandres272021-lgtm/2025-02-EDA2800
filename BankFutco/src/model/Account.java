@@ -78,5 +78,10 @@ public class Account {
 		return "Account [accountNumber=" + accountNumber + ", name=" + name + ", email=" + email + ", mobileNumber="
 				+ mobileNumber + ", accountType=" + accountType + ", address=" + address + "]";
 	}
+
+    public void setPhone(String newPhone) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setPhone'");
+    }
 	
 }
