@@ -53,7 +53,7 @@ public class App {
             String opt = sc.nextLine().trim();
             switch (opt) {
                 case "1":
-                    // CREATE
+                    
                     System.out.println("\n[" + entityName + "] Crear nuevo registro");
                     System.out.print("Ingrese ID: ");
                     String id = sc.nextLine().trim();
@@ -74,7 +74,7 @@ public class App {
                     break;
 
                 case "2":
-                    // READ BY ID
+                    
                     System.out.print("\n[" + entityName + "] Leer por ID - ingrese id: ");
                     String idSearch = sc.nextLine().trim();
                     Optional<Account> found = accountService.findById(idSearch);
@@ -92,7 +92,7 @@ public class App {
                     break;
 
                 case "4":
-                    // UPDATE
+                    
                     System.out.print("\n[" + entityName + "] Actualizar - ingrese id existente: ");
                     String idUp = sc.nextLine().trim();
 
@@ -125,12 +125,12 @@ public class App {
                     break;
 
                 case "5":
-                    // DELETE
+                    
                     System.out.print("\n[" + entityName + "] Eliminar - ingrese id: ");
                     String idDel = sc.nextLine().trim();
                     boolean deleted = accountService.deleteById(idDel);
                     if (deleted) {
-                        System.out.println("Cuenta eliminada exitosamente.");
+                        System.out.println("Cuenta Eliminda Exitosamente.");
                     } else {
                         System.out.println("No se encontró cuenta con ese ID.");
                     }
@@ -146,7 +146,8 @@ public class App {
         }
     }
 
-    private static void printCrudMenu(String entityName) {
+
+        private static void printCrudMenu(String entityName) {
         System.out.println("\n--- " + entityName + " CRUD ---");
         System.out.println("1. Create");
         System.out.println("2. Read by id");
