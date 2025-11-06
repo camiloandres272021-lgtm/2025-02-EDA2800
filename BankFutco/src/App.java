@@ -4,7 +4,7 @@ import model.Account;
 import services.AccountService;
 
 public class App {
-    private static AccountService accountService = new AccountService();
+    private static final AccountService accountService = new AccountService();
 
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
@@ -13,24 +13,15 @@ public class App {
                 printMainMenu();
                 String option = sc.nextLine().trim();
                 switch (option) {
-                    case "1":
-                        runCrudMenu(sc, "Account");
-                        break;
-                    case "2":
-                        runCrudMenu(sc, "Balance");
-                        break;
-                    case "3":
-                        runCrudMenu(sc, "Loans");
-                        break;
-                    case "4":
-                        runCrudMenu(sc, "Cards");
-                        break;
-                    case "0":
+                    case "1" -> runCrudMenu(sc, "Account");
+                    case "2" -> runCrudMenu(sc, "Balance");
+                    case "3" -> runCrudMenu(sc, "Loans");
+                    case "4" -> runCrudMenu(sc, "Cards");
+                    case "0" -> {
                         running = false;
                         System.out.println("Saliendo...");
-                        break;
-                    default:
-                        System.out.println("Opción no válida. Intente de nuevo.");
+                    }
+                    default -> System.out.println("Opción no válida. Intente de nuevo.");
                 }
             }
         }
@@ -52,8 +43,7 @@ public class App {
             printCrudMenu(entityName);
             String opt = sc.nextLine().trim();
             switch (opt) {
-                case "1":
-                    
+                case "1" -> {
                     System.out.println("\n[" + entityName + "] Crear nuevo registro");
                     System.out.print("Ingrese ID: ");
                     String id = sc.nextLine().trim();
@@ -71,10 +61,9 @@ public class App {
                     Account newAccount = new Account(id, owner, email, phone, type, address);
                     accountService.save(newAccount);
                     System.out.println("Cuenta creada exitosamente.");
-                    break;
+                }
 
-                case "2":
-                    
+                case "2" -> {
                     System.out.print("\n[" + entityName + "] Leer por ID - ingrese id: ");
                     String idSearch = sc.nextLine().trim();
                     Optional<Account> found = accountService.findById(idSearch);
@@ -83,16 +72,15 @@ public class App {
                     } else {
                         System.out.println(entityName + " con id=" + idSearch + " no encontrado.");
                     }
-                    break;
+                }
 
-                case "3":
+                case "3" -> {
                     // LIST ALL
                     System.out.println("\n[" + entityName + "] Listar todos:");
                     accountService.findAll().forEach(System.out::println);
-                    break;
+                }
 
-                case "4":
-                    
+                case "4" -> {
                     System.out.print("\n[" + entityName + "] Actualizar - ingrese id existente: ");
                     String idUp = sc.nextLine().trim();
 
@@ -122,10 +110,9 @@ public class App {
 
                     accountService.save(accToUpdate);
                     System.out.println("Cuenta actualizada exitosamente.");
-                    break;
+                }
 
-                case "5":
-                    
+                case "5" -> {
                     System.out.print("\n[" + entityName + "] Eliminar - ingrese id: ");
                     String idDel = sc.nextLine().trim();
                     boolean deleted = accountService.deleteById(idDel);
@@ -134,14 +121,11 @@ public class App {
                     } else {
                         System.out.println("No se encontró cuenta con ese ID.");
                     }
-                    break;
+                }
 
-                case "0":
-                    back = true;
-                    break;
+                case "0" -> back = true;
 
-                default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                default -> System.out.println("Opción no válida. Intente de nuevo.");
             }
         }
     }
